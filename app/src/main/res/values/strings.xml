@@ -12,5 +12,6 @@
     </string-array>
 
     <string name="preferences_auth_token">preferences_auth_token</string>
+    <string name="preferences_last_wake_up_tweet_date">preferences_last_wake_up_tweet_date</string>
     <string name="twitter_login_error">Error logging into Twitter. Try again.</string>
 </resources>

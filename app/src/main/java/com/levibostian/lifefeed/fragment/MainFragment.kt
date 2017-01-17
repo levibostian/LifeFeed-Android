@@ -1,6 +1,11 @@
 package com.levibostian.lifefeed.fragment
 
+import android.app.Activity
 import android.content.Intent
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
