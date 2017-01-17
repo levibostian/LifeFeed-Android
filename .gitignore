@@ -1,4 +1,5 @@
 # manually added
+app/src/main/res/raw/twittercreds.json
 app/fabric.properties
 debug.db
 

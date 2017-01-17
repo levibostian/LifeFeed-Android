@@ -118,6 +118,9 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
         transitive = true;
     }
+    compile('com.twitter.sdk.android:twitter:2.3.1@aar') {
+        transitive = true;
+    }
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

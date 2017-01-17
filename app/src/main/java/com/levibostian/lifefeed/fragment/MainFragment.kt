@@ -1,6 +1,8 @@
 package com.levibostian.lifefeed.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,12 @@ import com.curiosityio.androidboilerplate.util.LogUtil
 import com.levibostian.lifefeed.MainApplication
 import com.levibostian.lifefeed.R
 import com.levibostian.lifefeed.vo.RepoVo
+import com.twitter.sdk.android.core.Callback
+import com.twitter.sdk.android.core.Result
+import com.twitter.sdk.android.core.TwitterException
+import com.twitter.sdk.android.core.TwitterSession
+import com.twitter.sdk.android.core.identity.TwitterLoginButton
+import kotlinx.android.synthetic.main.fragment_main.view.*
 import javax.inject.Inject
 
 class MainFragment : BaseFragment() {
@@ -30,7 +38,7 @@ class MainFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_main, container, false)
+        val view = inflater?.inflate(R.layout.fragment_main, container, false)!!
 
         return view
     }

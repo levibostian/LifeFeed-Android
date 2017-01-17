@@ -10,12 +10,14 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name="com.levibostian.lifefeed.activity.MainActivity">
+        <activity android:name="com.levibostian.lifefeed.activity.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.LoginActivity"/>
+        <activity android:name=".activity.MainActivity"/>
     </application>
 
 </manifest>

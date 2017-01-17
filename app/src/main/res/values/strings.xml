@@ -12,4 +12,5 @@
     </string-array>
 
     <string name="preferences_auth_token">preferences_auth_token</string>
+    <string name="twitter_login_error">Error logging into Twitter. Try again.</string>
 </resources>
