@@ -1,0 +1,13 @@
+# manually added
+app/fabric.properties
+debug.db
+
+# added by android studio
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures

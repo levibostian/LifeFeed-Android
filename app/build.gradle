@@ -1,0 +1,107 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
+apply plugin: 'android-apt'
+apply plugin: 'kotlin-kapt'
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'com.getkeepsafe.dexcount'
+
+// allows developer to set the minSdk via gradle command line during development. API 21+ are faster.
+// so use 21+ during dev, then prod builds will still be built with 16 as don't have command line.
+def minSdk = hasProperty('minSdk') ? minSdk : 16
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+
+    packagingOptions {
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+
+    defaultConfig {
+        applicationId "com.levibostian.androidblanky"
+        minSdkVersion minSdk
+        targetSdkVersion 25
+        versionCode 1
+        versionName "0.1.0"
+
+        //multiDexEnabled true // don't need as not over dex limit yet.
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    signingConfigs {
+        releaseSigning {
+            // NOTE: Uncomment below when building for the Play store. Had to comment out to get Gradle to sync.
+            // Don't forget to also uncomment buildTypes > release > signingConfig.
+//            storeFile file(System.getenv("ANDROID_KEYSTORE"))
+//            storePassword System.console().readLine("\nStore password: ")
+//            keyAlias System.getenv("ANDROID_KEYALIAS")
+//            keyPassword System.console().readLine("Key password: ")
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // NOTE: Uncomment below when buliding for the Play store.
+            //signingConfig signingConfigs.releaseSigning
+        }
+    }
+
+    productFlavors {
+        development {
+            applicationId "com.levibostian.androidblanky.debug"
+        }
+
+        production {
+        }
+
+        beta {
+            applicationId "com.levibostian.androidblanky.beta"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile('com.android.support:appcompat-v7:25.1.0') {
+        exclude module: 'support-v4'
+    }
+    compile('com.android.support:design:25.1.0') {
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    }
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile('com.squareup.retrofit2:adapter-rxjava:2.1.0') {
+        exclude group: 'io.reactivex', module: 'rxjava'
+    }
+    //compile 'com.pkmmte.view:circularimageview:1.1' // if need a circle imageview.
+    kapt 'com.google.dagger:dagger-compiler:2.8'
+    compile 'com.google.dagger:dagger:2.8'
+
+    compile 'org.greenrobot:eventbus:3.0.0'
+
+    compile('com.github.curiosityio:AndroidViews:0.1.2', {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    })
+    compile 'com.github.curiosityio:AndroidBoilerplate:0.1.0'
+    compile 'com.github.curiosityio:AndroidRx:0.1.1'
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
